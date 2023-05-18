@@ -11,13 +11,14 @@ import jakarta.persistence.Table;
 public class Belonging {
 
 	@EmbeddedId
-	private BelongingPK id;
+	private BelongingPK id = new BelongingPK();
 	private Integer position;
 	
 	public Belonging() {}
 
-	public Belonging(BelongingPK id, Integer position) {
-		this.id = id;
+	public Belonging(Game game, GameList gameList, Integer position) {
+		id.setGame(game);
+		id.setGameList(gameList);
 		this.position = position;
 	}
 
