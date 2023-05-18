@@ -2,6 +2,7 @@ package com.devsuperior.dslist.entities;
 
 import java.util.Objects;
 
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
@@ -9,6 +10,7 @@ import jakarta.persistence.Table;
 @Table(name = "tb_belonging")
 public class Belonging {
 
+	@EmbeddedId
 	private BelongingPK id;
 	private Integer position;
 	
