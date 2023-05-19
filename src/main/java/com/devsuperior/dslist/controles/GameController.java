@@ -1,6 +1,7 @@
 package com.devsuperior.dslist.controles;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,15 +19,21 @@ public class GameController {
 
 	@Autowired
 	private GameService gameService;
-	
+
 	@GetMapping
 	public List<GameMinDTO> findAll() {
 		List<GameMinDTO> games = gameService.findAll();
 		return games;
 	}
-	
+
 	@GetMapping(value = "/{id}")
 	public GameDTO findById(@PathVariable Long id) {
-		return gameService.findById(id);
+		GameDTO game = new GameDTO();
+		try {
+			game = gameService.findById(id);
+		} catch (NoSuchElementException e) {
+			System.out.println(e.getMessage());
+		}
+		return game;
 	}
 }
